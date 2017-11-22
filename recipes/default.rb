@@ -96,7 +96,7 @@ end
 (base|revised)
 .each do |zip|
   execute "unzip #{zip}" do
-    command "unzip -q -o -d /media/StagingDirectory /media/windchill/#{zip}"
+    command "unzip -q -o -d /media/StagingDirectory/#{zip.gsub( /\.zip/, "" )} /media/windchill/#{zip}"
     user 'root'
     group 'root'
   end
