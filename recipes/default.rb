@@ -69,7 +69,7 @@ file "/home/wcadmin/.bash_profile" do
 end
 
 # copy over the Windchill images from some accessible remote site
-%w( /media /media/windchill /media/windchill/StagingDirectory )
+%w( /media /media/windchill /media/StagingDirectory )
 .each do |dir|
   directory dir.to_s do
     owner 'root'
