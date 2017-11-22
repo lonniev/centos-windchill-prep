@@ -1,0 +1,32 @@
+{
+  "name": "centos-oracle-prep",
+  "version": "0.1.0",
+  "description": "Prepares user and files for Oracle installation",
+  "maintainer": "Lonnie VanZandt",
+  "maintainer_email": "lonniev@gmail.com",
+  "license": "Apache 2.0",
+  "platforms": {
+    "centos": ">= 0.0.0",
+    "redhat": ">= 0.0.0",
+    "fedora": ">= 0.0.0"
+  },
+  "dependencies": {
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+    "centos-oracle-prep::default": "Prepares user and files for Oracle installation"
+  }
+}
