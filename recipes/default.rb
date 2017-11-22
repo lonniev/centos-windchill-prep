@@ -79,8 +79,10 @@ end
   end
 end
 
-( %w( 60702 60318 60419 60703 60757 60800 ).map { |e| "MED-#{e}-CD-110_M030.zip" }
-| %w( 60171 60379 60418 60898 ).map { |e| "MED-#{e}-CD-110_F000.zip" } )
+revised = %w( 60702 60318 60419 60703 60757 60800 ).map { |e| "MED-#{e}-CD-110_M030.zip" }
+base = %w( 60171 60379 60418 60898 ).map { |e| "MED-#{e}-CD-110_F000.zip" }
+
+(base|revised)
 .each do |file|
   bash "get remote #{file}" do
     cwd /media/windchill
@@ -91,8 +93,7 @@ end
 end
 
 # now unzip the downloaded files
-( %w( 60702 60318 60419 60703 60757 60800 ).map { |e| "MED-#{e}-CD-110_M030.zip" }
-| %w( 60171 60379 60418 60898 ).map { |e| "MED-#{e}-CD-110_F000.zip" } )
+(base|revised)
 .each do |zip|
   execute "unzip #{zip}" do
     command "unzip -q -o -d /media/StagingDirectory /media/windchill/#{zip}"
