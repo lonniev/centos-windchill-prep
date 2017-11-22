@@ -82,11 +82,11 @@ end
 ( %w( 60702 60318 60419 60703 60757 60800 ).map { |e| "MED-#{e}-CD-110_M030.zip" }
 | %w( 60171 60379 60418 60898 ).map { |e| "MED-#{e}-CD-110_F000.zip" } )
 .each do |file|
-  execute "get remote #{file}" do
-    command "wget -q -N -c -o /media/windchill/#{file} https://storage.googleapis.com/windchill/#{file}"
+  bash "get remote #{file}" do
+    cwd /media/windchill
+    code "wget -q -O /media/windchill/#{file} https://storage.googleapis.com/windchill/#{file}"
     user 'root'
     group 'root'
-    creates "/media/windchill/#{file}"
   end
 end
 
