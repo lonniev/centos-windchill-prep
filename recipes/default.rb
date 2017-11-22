@@ -86,7 +86,6 @@ end
     command "wget -q -N -c -o /media/windchill/#{file} https://storage.googleapis.com/windchill/#{file}"
     user 'root'
     group 'root'
-    mode '0755'
     creates "/media/windchill/#{file}"
   end
 end

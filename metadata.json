@@ -1,7 +1,7 @@
 {
-  "name": "centos-oracle-prep",
+  "name": "centos-windchill-prep",
   "version": "0.1.0",
-  "description": "Prepares user and files for Oracle installation",
+  "description": "Prepares user and files for Windchill installation",
   "maintainer": "Lonnie VanZandt",
   "maintainer_email": "lonniev@gmail.com",
   "license": "Apache 2.0",
@@ -27,6 +27,6 @@
   "groupings": {
   },
   "recipes": {
-    "centos-oracle-prep::default": "Prepares user and files for Oracle installation"
+    "centos-windchill-prep::default": "Prepares user and files for Windchill installation"
   }
 }

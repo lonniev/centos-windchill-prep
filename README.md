@@ -1,7 +1,7 @@
 Overview
 ========
 
-This cookbook provides `centos-oracle-prep`.
+This cookbook provides `centos-windchill-prep`.
 
 License and Author
 ==================
