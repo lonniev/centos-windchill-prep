@@ -101,3 +101,8 @@ end
     group 'root'
   end
 end
+
+# create a convenience link to the PSI installer directory
+link '/media/PSI' do
+  to '/media/StagingDirectory/MED-60702-CD-110_M030'
+end
