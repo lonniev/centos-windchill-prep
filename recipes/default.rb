@@ -68,8 +68,8 @@ file "/home/wcadmin/.bash_profile" do
   HERE
 end
 
-# copy over the Oracle images from some accessible remote site
-%w( /media /media/windchill )
+# copy over the Windchill images from some accessible remote site
+%w( /media /media/windchill /media/windchill/StagingDirectory )
 .each do |dir|
   directory dir.to_s do
     owner 'root'
