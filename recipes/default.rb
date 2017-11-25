@@ -18,6 +18,8 @@
 # limitations under the License.
 #
 
+require 'digest'
+
 # a variety of utilities and build packages that the Windchill installer will need
 %w(
   wget
@@ -87,6 +89,11 @@ datecode = node['centos-windchill-prep']['datecode']
 revised = node['centos-windchill-prep']['revised_images'].map { |e| "MED-#{e}-CD-#{version}_#{datecode}.zip" }
 base = node['centos-windchill-prep']['base_images'].map { |e| "MED-#{e}-CD-#{version}_F000.zip" }
 
+baseSums = base.zip( node['centos-windchill-prep']['base_sums'] ).to_h
+revisedSums = revised.zip( node['centos-windchill-prep']['revised_sums'] ).to_h
+
+md5Sums = baseSums.merge( revisedSums )
+
 (base|revised)
 .each do |file|
   bash "get remote #{file}" do
@@ -95,6 +102,8 @@ base = node['centos-windchill-prep']['base_images'].map { |e| "MED-#{e}-CD-#{ver
     user 'root'
     group 'root'
   end
+
+  only_if { ( !File.exists?( "/media/windchill/#{file}" ) ) || ( Digest::MD5.file( "/media/windchill/#{file}" ) != md5sums[ file ] ) }
 end
 
 # now unzip the downloaded files
