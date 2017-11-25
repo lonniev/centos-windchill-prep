@@ -101,9 +101,11 @@ md5Sums = baseSums.merge( revisedSums )
     code "wget -q -O /media/windchill/#{file} #{node['centos-windchill-prep']['images_repo']}#{file}"
     user 'root'
     group 'root'
+
+    not_if { ( File.exists?( "/media/windchill/#{file}" ) ) && ( Digest::MD5.file( "/media/windchill/#{file}" ).hexdigest == md5sums[ file ] ) }
+
   end
 
-  only_if { ( !File.exists?( "/media/windchill/#{file}" ) ) || ( Digest::MD5.file( "/media/windchill/#{file}" ) != md5sums[ file ] ) }
 end
 
 # now unzip the downloaded files
