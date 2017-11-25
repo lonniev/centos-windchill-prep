@@ -92,7 +92,7 @@ base = node['centos-windchill-prep']['base_images'].map { |e| "MED-#{e}-CD-#{ver
 baseSums = base.zip( node['centos-windchill-prep']['base_sums'] ).to_h
 revisedSums = revised.zip( node['centos-windchill-prep']['revised_sums'] ).to_h
 
-md5Sums = baseSums.merge( revisedSums )
+md5sums = baseSums.merge( revisedSums )
 
 (base|revised)
 .each do |file|
