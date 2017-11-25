@@ -23,11 +23,12 @@
   wget
   less
   unzip
-  java-1.8.0-openjdk-devel
   xterm )
 .each do |pkg|
   yum_package pkg.to_s
 end
+
+yum_package node['centos-windchill-prep']['java_pkg']
 
 # add the Windchill user
 user 'wcadmin' do
@@ -79,14 +80,18 @@ end
   end
 end
 
-revised = %w( 60702 60318 60419 60703 60757 60800 ).map { |e| "MED-#{e}-CD-110_M030.zip" }
-base = %w( 60171 60379 60418 60898 ).map { |e| "MED-#{e}-CD-110_F000.zip" }
+psi_cd = node['centos-windchill-prep']['psi_cd']
+version = node['centos-windchill-prep']['version']
+datecode = node['centos-windchill-prep']['datecode']
+
+revised = node['centos-windchill-prep']['revised_images'].map { |e| "MED-#{e}-CD-#{version}_#{datecode}.zip" }
+base = node['centos-windchill-prep']['revised_images'].map { |e| "MED-#{e}-CD-#{version}_F000.zip" }
 
 (base|revised)
 .each do |file|
   bash "get remote #{file}" do
     cwd "/media/windchill"
-    code "wget -q -O /media/windchill/#{file} https://storage.googleapis.com/windchill/#{file}"
+    code "wget -q -O /media/windchill/#{file} #{node['centos-windchill-prep']['images_repo']}#{file}"
     user 'root'
     group 'root'
   end
@@ -104,5 +109,5 @@ end
 
 # create a convenience link to the PSI installer directory
 link '/media/PSI' do
-  to '/media/StagingDirectory/MED-60702-CD-110_M030'
+  to "/media/StagingDirectory/MED-#{psi_cd}-CD-#{version}_#{datecode}"
 end
