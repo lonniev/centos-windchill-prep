@@ -85,7 +85,7 @@ version = node['centos-windchill-prep']['version']
 datecode = node['centos-windchill-prep']['datecode']
 
 revised = node['centos-windchill-prep']['revised_images'].map { |e| "MED-#{e}-CD-#{version}_#{datecode}.zip" }
-base = node['centos-windchill-prep']['revised_images'].map { |e| "MED-#{e}-CD-#{version}_F000.zip" }
+base = node['centos-windchill-prep']['base_images'].map { |e| "MED-#{e}-CD-#{version}_F000.zip" }
 
 (base|revised)
 .each do |file|
