@@ -23,6 +23,7 @@ require 'digest'
 # a variety of utilities and build packages that the Windchill installer will need
 %w(
   wget
+  git
   less
   unzip
   xterm )
